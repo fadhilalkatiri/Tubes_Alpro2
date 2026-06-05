@@ -41,7 +41,7 @@ func main() {
 		case 9:
 			menuSorting(&data, n)
 		case 0:
-			fmt.Println("\n")
+			fmt.Print("\n")
 			fmt.Println("Program selesai.")
 			return
 		default:
