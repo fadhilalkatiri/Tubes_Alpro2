@@ -28,7 +28,7 @@ func main() {
 		case 3:
 			cariBarangSequential(data, n)
 		case 4:
-			selectionSortStokAsc(&data, n)
+			insertionSortKodeAsc(&data, n)
 			cariBarangBinary(data, n)
 		case 5:
 			editBarang(&data, n)
@@ -216,6 +216,22 @@ func barangKeluar(g *gudang, n int) {
 
 	} else {
 		fmt.Println("Barang tidak ditemukan")
+	}
+}
+
+func insertionSortKodeAsc(g *gudang, n int) {
+	var pass int
+	var temp barang
+
+	for pass = 1; pass < n; pass++ {
+		temp = g[pass]
+		i := pass - 1
+
+		for i >= 0 && g[i].kode > temp.kode {
+			g[i+1] = g[i]
+			i--
+		}
+		g[i+1] = temp
 	}
 }
 
