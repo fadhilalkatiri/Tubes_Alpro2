@@ -1,7 +1,5 @@
 package main
-
 import "fmt"
-
 const NMAX = 1000
 
 type barang struct {
@@ -132,11 +130,9 @@ func editBarang(g *gudang, n int) {
 
 	fmt.Print("Kode barang: ")
 	fmt.Scan(&kode)
-
 	idx := sequentialSearch(*g, n, kode)
 
 	if idx != -1 {
-
 		fmt.Print("Nama baru : ")
 		fmt.Scan(&g[idx].nama)
 
@@ -157,15 +153,12 @@ func hapusBarang(g *gudang, n *int) {
 
 	fmt.Print("Kode barang yang dihapus: ")
 	fmt.Scan(&kode)
-
 	idx := sequentialSearch(*g, *n, kode)
 
 	if idx != -1 {
-
 		for i := idx; i < *n-1; i++ {
 			g[i] = g[i+1]
 		}
-
 		*n--
 		fmt.Println("Data berhasil dihapus")
 	} else {
@@ -179,10 +172,8 @@ func barangMasuk(g *gudang, n int) {
 
 	fmt.Print("Kode barang : ")
 	fmt.Scan(&kode)
-
 	fmt.Print("Jumlah masuk : ")
 	fmt.Scan(&jumlah)
-
 	idx := sequentialSearch(*g, n, kode)
 
 	if idx != -1 {
@@ -199,39 +190,19 @@ func barangKeluar(g *gudang, n int) {
 
 	fmt.Print("Kode barang : ")
 	fmt.Scan(&kode)
-
 	fmt.Print("Jumlah keluar : ")
 	fmt.Scan(&jumlah)
-
 	idx := sequentialSearch(*g, n, kode)
 
 	if idx != -1 {
-
 		if jumlah <= g[idx].stok {
 			g[idx].stok -= jumlah
 			fmt.Println("Stok berhasil dikurangi")
 		} else {
 			fmt.Println("Stok tidak cukup")
 		}
-
 	} else {
 		fmt.Println("Barang tidak ditemukan")
-	}
-}
-
-func insertionSortKodeAsc(g *gudang, n int) {
-	var pass int
-	var temp barang
-
-	for pass = 1; pass < n; pass++ {
-		temp = g[pass]
-		i := pass - 1
-
-		for i >= 0 && g[i].kode > temp.kode {
-			g[i+1] = g[i]
-			i--
-		}
-		g[i+1] = temp
 	}
 }
 
@@ -256,6 +227,38 @@ func menuSorting(g *gudang, n int) {
 	case 4:
 		insertionSortNamaDesc(g, n)
 	}
+}
+
+func sequentialSearch(g gudang, n int, x string) int {
+	for i := 0; i < n; i++ {
+		if g[i].kode == x {
+			return i
+		}
+	}
+	return -1
+}
+
+func binarySearch(g gudang, n int, x string) int {
+
+	left := 0
+	right := n - 1
+
+	for left <= right {
+
+		mid := (left + right) / 2
+
+		if g[mid].kode == x {
+			return mid
+		}
+
+		if x < g[mid].kode {
+			right = mid - 1
+		} else {
+			left = mid + 1
+		}
+	}
+
+	return -1
 }
 
 func selectionSortStokAsc(g *gudang, n int) {
@@ -326,36 +329,17 @@ func insertionSortNamaDesc(g *gudang, n int) {
 	}
 }
 
-func sequentialSearch(g gudang, n int, x string) int {
+func insertionSortKodeAsc(g *gudang, n int) {
+	var pass int
+	var temp barang
 
-	for i := 0; i < n; i++ {
-		if g[i].kode == x {
-			return i
+	for pass = 1; pass < n; pass++ {
+		temp = g[pass]
+		i := pass - 1
+		for i >= 0 && g[i].kode > temp.kode {
+			g[i+1] = g[i]
+			i--
 		}
+		g[i+1] = temp
 	}
-
-	return -1
-}
-
-func binarySearch(g gudang, n int, x string) int {
-
-	left := 0
-	right := n - 1
-
-	for left <= right {
-
-		mid := (left + right) / 2
-
-		if g[mid].kode == x {
-			return mid
-		}
-
-		if x < g[mid].kode {
-			right = mid - 1
-		} else {
-			left = mid + 1
-		}
-	}
-
-	return -1
 }
