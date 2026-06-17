@@ -15,8 +15,8 @@ func main() {
 
 	for {
 		menu()
-		fmt.Print("Pilih menu: ")
-		fmt.Scan(&pilihan)
+		fmt.Print(" Pilih menu: ")
+		fmt.Scanln(&pilihan)
 
 		switch pilihan {
 		case 1:
@@ -49,18 +49,20 @@ func main() {
 }
 
 func menu() {
-	fmt.Println("\n 	GUDANG SEMBAKO ")
-	fmt.Print("\n")
-	fmt.Println("1. Tambah Barang")
-	fmt.Println("2. Tampilkan Barang")
-	fmt.Println("3. Cari Barang Sequential")
-	fmt.Println("4. Cari Barang Binary")
-	fmt.Println("5. Edit Barang")
-	fmt.Println("6. Hapus Barang")
-	fmt.Println("7. Barang Masuk")
-	fmt.Println("8. Barang Keluar")
-	fmt.Println("9. Sorting")
-	fmt.Println("0. Keluar")
+	fmt.Println("╔══════════════════════════════════════╗")
+	fmt.Println("║	    GUDANG SEMBAKO             ║")
+	fmt.Println("╟══════════════════════════════════════╢")
+	fmt.Println("║ 1. Tambah Barang                     ║")
+	fmt.Println("║ 2. Tampilkan Barang                  ║")
+	fmt.Println("║ 3. Cari Barang Sequential.           ║")
+	fmt.Println("║ 4. Cari Barang Binary                ║")
+	fmt.Println("║ 5. Edit Barang                       ║")
+	fmt.Println("║ 6. Hapus Barang                      ║")
+	fmt.Println("║ 7. Barang Masuk                      ║")
+	fmt.Println("║ 8. Barang Keluar                     ║")
+	fmt.Println("║ 9. Sorting                           ║")
+	fmt.Println("║ 0. Keluar                            ║")
+	fmt.Println("╚══════════════════════════════════════╝")
 }
 
 func tambahBarang(g *gudang, n *int) {
@@ -91,6 +93,7 @@ func tampilBarang(g gudang, n int) {
 			g[i].stok,
 			g[i].harga)
 	}
+	fmt.Println("\n")
 }
 
 func cariBarangSequential(g gudang, n int) {
