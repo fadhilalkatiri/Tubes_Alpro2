@@ -15,17 +15,20 @@ func main() {
 
 	for {
 		menu()
-		fmt.Print(" Pilih menu: ")
-		fmt.Scanln(&pilihan)
+		fmt.Print("  Pilih menu: ")
+		fmt.Scan(&pilihan)
 
 		switch pilihan {
 		case 1:
+			fmt.Print("\n")
 			tambahBarang(&data, &n)
 		case 2:
 			tampilBarang(data, n)
 		case 3:
+			fmt.Print("\n")
 			cariBarangSequential(data, n)
 		case 4:
+			fmt.Print("\n")
 			insertionSortKodeAsc(&data, n)
 			cariBarangBinary(data, n)
 		case 5:
@@ -40,10 +43,11 @@ func main() {
 			menuSorting(&data, n)
 		case 0:
 			fmt.Print("\n")
-			fmt.Println("Program selesai.")
+			fmt.Println("Program selesai.\n")
 			return
 		default:
-			fmt.Println("Menu tidak tersedia")
+			fmt.Print("\n")
+			fmt.Println("Menu tidak tersedia\n")
 		}
 	}
 }
@@ -54,7 +58,7 @@ func menu() {
 	fmt.Println("╟══════════════════════════════════════╢")
 	fmt.Println("║ 1. Tambah Barang                     ║")
 	fmt.Println("║ 2. Tampilkan Barang                  ║")
-	fmt.Println("║ 3. Cari Barang Sequential.           ║")
+	fmt.Println("║ 3. Cari Barang Sequential            ║")
 	fmt.Println("║ 4. Cari Barang Binary                ║")
 	fmt.Println("║ 5. Edit Barang                       ║")
 	fmt.Println("║ 6. Hapus Barang                      ║")
@@ -66,27 +70,37 @@ func menu() {
 }
 
 func tambahBarang(g *gudang, n *int) {
-	fmt.Print("Kode : ")
-	fmt.Scan(&g[*n].kode)
+	var jumlah int
 
-	fmt.Print("Nama : ")
-	fmt.Scan(&g[*n].nama)
+	fmt.Print("Berapa barang yang ingin ditambahkan? ")
+	fmt.Scan(&jumlah)
 
-	fmt.Print("Stok : ")
-	fmt.Scan(&g[*n].stok)
+	for i := 1; i <= jumlah; i++ {
+		fmt.Printf("\nBarang ke-%d\n", i)
 
-	fmt.Print("Harga : ")
-	fmt.Scan(&g[*n].harga)
+		fmt.Print("Kode  : ")
+		fmt.Scan(&g[*n].kode)
 
-	*n++
-	fmt.Println("Barang berhasil ditambahkan")
+		fmt.Print("Nama  : ")
+		fmt.Scan(&g[*n].nama)
+
+		fmt.Print("Stok  : ")
+		fmt.Scan(&g[*n].stok)
+
+		fmt.Print("Harga : ")
+		fmt.Scan(&g[*n].harga)
+
+		*n++
+
+		fmt.Print("\n")
+	}
 }
 
 func tampilBarang(g gudang, n int) {
-	fmt.Println("\n===== DATA BARANG =====")
+	fmt.Println("\n============== DATA BARANG ===============")
 
 	for i := 0; i < n; i++ {
-		fmt.Printf("%d. %s | %s | Stok:%d | Harga:%d\n",
+		fmt.Printf("%d. %s | %s | Stok: %d | Harga: %d\n",
 			i+1,
 			g[i].kode,
 			g[i].nama,
@@ -106,9 +120,9 @@ func cariBarangSequential(g gudang, n int) {
 
 	if idx != -1 {
 		fmt.Println("Barang ditemukan")
-		fmt.Println(g[idx])
+		fmt.Println(g[idx],"\n")
 	} else {
-		fmt.Println("Barang tidak ditemukan")
+		fmt.Println("Barang tidak ditemukan\n")
 	}
 }
 
@@ -122,9 +136,9 @@ func cariBarangBinary(g gudang, n int) {
 
 	if idx != -1 {
 		fmt.Println("Barang ditemukan")
-		fmt.Println(g[idx])
+		fmt.Println(g[idx],"\n")
 	} else {
-		fmt.Println("Barang tidak ditemukan")
+		fmt.Println("Barang tidak ditemukan\n")
 	}
 }
 
