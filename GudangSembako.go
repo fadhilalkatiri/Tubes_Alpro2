@@ -150,6 +150,9 @@ func editBarang(g *gudang, n int) {
 	idx := sequentialSearch(*g, n, kode)
 
 	if idx != -1 {
+		fmt.Print("Kode baru : ")
+		fmt.Scan(&g[idx].kode)
+
 		fmt.Print("Nama baru : ")
 		fmt.Scan(&g[idx].nama)
 
